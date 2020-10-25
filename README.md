@@ -1,4 +1,4 @@
 # simpleapi
-This is my frirst api on java.
+This is my first api on java.
 the project is made using the lombok and spring boot framework
-using postgreSQL database and maven project collector
+using postgreSQL database and maven project collector.
