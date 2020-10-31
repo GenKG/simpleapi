@@ -1,4 +1,35 @@
-# simpleapi
-This is my first api on java.
-the project is made using the lombok and spring boot framework
-using postgreSQL database and maven project collector.
+**Методология разработки ПО**
+
+`Лабораторная работа №1: создание микросервиса на Spring Boot с базой данных`
+ 
+ Сафонов Егор Игоревич 3mac2001
+ 
+ Создать простое Rest Api приложение используя Java & Spring boot
+ 
+ 
+ `Инструкция по сборке и запуску:`
+ 
+ 1.Склонировать репозиторий 
+ 
+ 2.Использовать комманду mvn package в корневой директории для сборки проекта
+ 
+ 3.Для сборки докер образа применить docker build . -t myfirstapi:1.0
+  
+  a)где .(точка) явл. текущей директорией проекта, 
+  
+  б)myfirstapi - название образа
+  
+  в)1.0 - версия проекта
+  
+ 4.Для запуска контейнера использовать docker run myfirstapi:1.0
+ 
+ 
+ `Команады к проекту `
+ 
+ 1.http://localhost:8080/api/v1/boardGames - получение всех данных из базы
+ 
+ 2.http://localhost:8080/api/v1/boardGames/2 - получение информации из базы по id 2
+ 
+ 3.http://localhost:8080/api/v1/status - возвращает hostname
+ 
+ 4.http://localhost:8080/api/v1/boardGames/4  получение информации из базы по id 4
