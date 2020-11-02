@@ -17,7 +17,7 @@
  
  <h4>Инструкция по сборке и запуску:</h4>
  
- 1.Склонировать репозиторий, используя команду `git clone [https://github.com/GenKG/simpleapi](https://github.com/GenKG/simpleapi)` или скопировав ссылку с github. 
+ 1.Склонировать репозиторий, используя команду `git clone https://github.com/GenKG/simpleapi` или скопировав ссылку с github. 
  
  2.Использовать комманду `mvn package -Dmaven.test.skip=true` (без покрытия тестов) в корневой директории для сборки проекта.
  
