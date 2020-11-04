@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/GenKG/simpleapi.svg?branch=master)](https://travis-ci.org/GenKG/simpleapi)
 <h1>Методология разработки ПО</h1>
 
 <h2>Лабораторная работа №1: создание микросервиса на Spring Boot с базой данных</h2>
@@ -43,4 +44,10 @@
  `curl -X POST http://localhost:8080/api/v1/boardGames/{id}` -удаление по id
  
  `curl -X GET http://localhost:8080/api/v1/status` - возвращает hostname
- 
+
+<h2>Лабораторная работа №3: CI/CD и деплой приложения в Heroku</h2> 
+<h3>Цель лабороторной работы</h3>
+Целью лабораторной работы является знакомство с CI/CD и его реализацией на примере Travis CI и Heroku.
+<h5>Ссылка на развернутое приложение на платформе Heroku</h5>
+[ссылка на развернутое приложение](https://boardgamesdb.herokuapp.com/api/v1/status)
+
