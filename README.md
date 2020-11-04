@@ -35,9 +35,9 @@
  Приложение является простейшим отражением базы настольных игр с использованием JSON.
  Формат JSON `{name:"String",publisher:"String, price:integer,quantity: "integer"}`
  
- `curl -X GET http://localhost:8080/api/v1/boardGames` - получение всех данных из базы
+ `curl -X GET <http://localhost:8080/api/v1/boardGames>` - получение всех данных из базы
     
- `curl -X GET http://localhost:8080/api/v1/boardGames/{id}` - получение информации из базы по id 
+ `curl -X GET <http://localhost:8080/api/v1/boardGames/{id}>` - получение информации из базы по id 
  
  `curl -X POST http://127.0.0.1:8080/api/v1/ -d {«name»: «Мафия″, "publisher": "Мосигра", "price": 7000, "quantity": 3} -H «Content-Type:application/json» `- добавление новой записи в базу
  
