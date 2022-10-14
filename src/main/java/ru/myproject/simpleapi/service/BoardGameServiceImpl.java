@@ -6,6 +6,7 @@ import ru.myproject.simpleapi.dao.BoardGameRepository;
 import ru.myproject.simpleapi.model.BoardGame;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardGameServiceImpl implements BoardGameService {
@@ -24,12 +25,32 @@ public class BoardGameServiceImpl implements BoardGameService {
 
     @Override
     public List<BoardGame> getAll() {
-        return boardGameRepository.findAll() ;
+        return boardGameRepository.findAll();
     }
 
     @Override
     public BoardGame save(BoardGame boardGame) {
         return boardGameRepository.save(boardGame);
+    }
+
+    @Override
+    public BoardGame update(Long id, BoardGame newBoardGame) {
+        BoardGame updateBoard = boardGameRepository.findById(id).orElseThrow(() -> new RuntimeException("Board not found with id: " + id));
+        updateBoard.setName(newBoardGame.getName());
+        updateBoard.setPrice(newBoardGame.getPrice());
+        updateBoard.setPublisher(newBoardGame.getPublisher());
+        updateBoard.setQuantity(newBoardGame.getQuantity());
+        return boardGameRepository.save(updateBoard);
+    }
+
+    @Override
+    public BoardGame modified(Long id, BoardGame boardGame) {
+        BoardGame modifiedBoard = boardGameRepository.findById(id).orElseThrow(() -> new RuntimeException("Board not found with id: " + id));
+        modifiedBoard.setName(boardGame.getName());
+        modifiedBoard.setPrice(boardGame.getPrice());
+        modifiedBoard.setPublisher(boardGame.getPublisher());
+        modifiedBoard.setQuantity(boardGame.getQuantity());
+        return boardGameRepository.save(modifiedBoard);
     }
 
     @Override

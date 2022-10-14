@@ -11,5 +11,9 @@ public interface BoardGameService {
 
     BoardGame save(BoardGame boardGame);
 
+    BoardGame update(Long id, BoardGame boardGame);
+
+    BoardGame modified(Long id, BoardGame boardGame);
+
     void delete(Long id);
 }
