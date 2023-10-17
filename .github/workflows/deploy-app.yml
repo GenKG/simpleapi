@@ -1,0 +1,20 @@
+name: deploy-app
+run-name: deploy board-game app
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  board-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build-simple-api
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle'
+          java-version: '8'
+          cache: 'maven'
+      - name: build with maven
+        run: ./mvnw -B verify

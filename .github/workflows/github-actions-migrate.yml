@@ -1,0 +1,30 @@
+dist: trusty
+jdk: oraclejdk8
+language: java
+services:
+  - postgresql
+  - docker
+before_install:
+  - chmod +x mvnw
+env:
+  global:
+    - secure: "WTpMlz/ny/6Qj6CtNfkEpAZ4VsK9oMDZBHxfxTLGYJPOkiz0kt8Nz1SE2IQ7a48eh3/dXafpDoBuS6/bxJCVF0hSOO3v4NXx3Q2UA1jQ9U3mYdBdHqhvJNvzKXCn6PQWAghQFV4+wC9XwUiLvMDcoAdAFLo5CXaEVugCCf3U/kYrb8Ldht2ZMEDz1WSf3o2x6CVi0l6i4VpF0Qs7MCwbfwPyKAsFtaUUC4BNygyM8bCEMIbz0LJ7WoFyoIMc6GoEauys1zPF26/MXllJ9Hcsg+V6OPRY1JwHxStYHM+DDuW45hLlxHg+aAr7JGDHBKeMnL/mA2HXZstwwZecZNBj2uFNiXIzBNgTcsgzOBYmE+HJMt5iE3v5M2uvKSSpU69Ir5im7OMLfrlD+przce/ZhentqNr3pzDVTHeA83u13RgAd6xhymWFLKJeBuNMpRu2li+s4Bsw/KXRKWV73ToEH3SvotuSYEHjtQ4GgNodoSFzNAIcKVYsm/vw47sQRdRf+GRggmp+UcDQ/hh4cP28HCnHNzR2FelJjvr5VSKzQrtlQ9djSNp+Mq+Ios2sRvRttOMrgCU/DIhBbW3MbHHuzJY212rk0Mhh0Nyq4is8TkSEKj5HAqNtDbtM0tzlANMVdtzYLnPmPGCKbxzF+e6Av3x2Bl/GaNg7ZOkE5kQz6Nc="
+    - secure: "Tb1wFXnWyvza/y7H4TAOQ7sfylYFOUezOerNguVu/guhiIN4u2h+pBEFFRSrA+eAwIZmPvzApB2+8G3Lxqbwt/XWDULkBlRQHGJUCZROArk3Pd+fXL0Ub6U5St/bOm4W6k/mJlzd6WexCavRjItTltLVi4T8ZdojzvYh3/vC10mpQFd2cyksxspWlsDVAVthhgftgkxb47X6jCGFv9PJG5kY8Huc1A7WUubEOVTwrVflYJoZaZkWp5ybQ/vr909sIZq6MaZKrqQbtrjB/3x2Uh12anYga+SvyxZ1J1MymGmsOQ49vydnxvBZq5ZElQZNvgf6pICLJRnc3yIYpjEUAXZc+gGyluhea6iHsLN6CjDAUFeSbTiO1/DX34l6nidl7/0VPvPEnn0PsiRaPNx2sp/18Zf5a/5xjBy205zmgtIONSSgQlq8H1al0p73HsG/nNtBgQuu4azFmMCb0vsnEtif+S9idwzuheAdozBZExI/uIU87pmLS8knzaf3COf1kbXUQCstwemRGdB0BeJuzwnWX9bdbAjZqy6rJn6yqyxmww4Hut5RF5/9czsnYWS2LecMq5FwlLb2FqeAUiqugwhq6bM/vrvpJk9dKrZF5KoKMnDtnI/TPiMTOJgCKf18vmFVr7XXQklBTMHgLDusRJ4SRaUcEG1qqqrbtfbhvfI="
+    - secure: "UTaKEOAPR1aHd5cV3WTkVXnLktGWD1jYm1QaxsFwUGxwlKnlHYJn0Fwx1rSo40O/o7OYtmQt8MCT4xzPh1PFlasXOkRmfe+17DUFS59QFnRI0Fp35I9RCHH3XFgqzO3O7Xl4xeQGklM2JwBq4SA3D4rrcM08baBL11qrmFurpqxfeFOYr3Y8h4cHkPskkqIK7ie+ogCOJhLxUngpDdFdMmX3qAD6AFpDNYyDReRZF1ezfS0NvP5kbYKrAOCpxDd+usqrBivyYpp2/Nu6CkhymNnoHiPm8vcij7KA50NfrIzy/BgRsSikhjUiBd9pTGWJnNzXc1DAOIjpAXf8W2lC0BRamYfvuFaopkGNSwtrVxf87+o6Ygn3IuOlJBj95PW2QHKdkz0STW/iSKZxM7XjYY96iHy4gLdeNYhAR97UGigHz/MZxqsc2v0FxfleiIF78iiqUcpuEcSoafF75znPXYYVpOwNiwHaBkDHPM2Hsv+NfU766Wnes7sEs9okrIl4UsaboAduytxGckMR9ql6lcyZ2LbwEoUeALL34mLy/YyjAbQS9c/A6Rukl9zKJgbckjcVSH+Vj7BxvDURwzFdbP3GQW20ctAobG38HSynZNjhKDpf94RFpGBUulYow/z0heowgPsqAmhjG6FIc3H7bzREgfDGa0/xicROAcgnQ84="
+    - COMMIT=${TRAVIS_COMMIT::7}
+
+script:
+  - ./mvnw clean install -B
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi`
+  - export IMAGE_NAME=myapi/main-repo
+  - docker build -t $IMAGE_NAME:latest .
+  - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
+  - docker push $IMAGE_NAME:$TAG
+
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API_KEY
+  app: boardgamesdb
