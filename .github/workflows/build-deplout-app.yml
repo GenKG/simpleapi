@@ -12,13 +12,11 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_HOST: ${{ secrets.RAILWAY_DB_HOST }}
-          POSTGRES_PORT: ${{ secrets.RAILWAY_DB_PORT }}
           POSTGRES_DB: postgres
-          POSTGRES_PASSWORD: ${{ secrets.RAILWAY_DB_PASSWORD }}
-          POSTGRES_USER: ${{ secrets.RAILWAY_DB_USER }}
+          POSTGRES_PASSWORD: root
+          POSTGRES_USER: postgres
         ports:
-          - ${{ secrets.RAILWAY_DB_PORT }}:5432
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
