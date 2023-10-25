@@ -1,4 +1,4 @@
-[![deploy-app](https://github.com/GenKG/simpleapi/actions/workflows/deploy-app.yml/badge.svg)](https://github.com/GenKG/simpleapi/actions/workflows/deploy-app.yml)
+[![build-deploy-app](https://github.com/GenKG/simpleapi/actions/workflows/build-deplout-app.yml/badge.svg)](https://github.com/GenKG/simpleapi/actions/workflows/build-deplout-app.yml)
 <h1>Методология разработки ПО</h1>
 
 <h2>Лабораторная работа №1: создание микросервиса на Spring Boot с базой данных</h2>
