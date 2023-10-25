@@ -1,5 +1,5 @@
 name: build-deploy-app
-run-name: build-deploy board-game app
+run-name: build and deploy board-game app
 on:
   push:
     branches:
@@ -48,3 +48,9 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_SIMPLEAPI_REPO_NAME }}:latest
+      - name: Install Railway
+        run: npm i -g @railway/cli
+      - name: Deploy
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
