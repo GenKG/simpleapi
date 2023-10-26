@@ -22,6 +22,7 @@ ARG BOARD_API_DB_PORT
 ARG BOARD_API_DB_NAME
 ARG BOARD_API_DB_USERNAME
 ARG BOARD_API_DB_PASSWORD
+ARG PORT
 COPY src /home/app/src
 COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
