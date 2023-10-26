@@ -16,10 +16,13 @@
 ##RUN chmod +x /apps/entrypoint.sh
 ##CMD ["/apps/entrypoint.sh"]
 
+FROM maven:3.8.6-jdk-8-slim AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
 
-FROM maven:3.8.6-jdk-8-slim AS MAVEN_TOOL_CHAIN
-COPY pom.xml /tmp/
-COPY src /tmp/src/WORKDIR /tmp/
-RUN mvn package FROM openjdk:8-jdk-alpine
-COPY --from=MAVEN_TOOL_CHAIN  /tmp/target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+FROM openjdk:8-jdk-alpine
+COPY --from=build /home/app/target/simpleapi-1.0.jar /usr/local/lib/demo.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]
