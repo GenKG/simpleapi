@@ -48,8 +48,8 @@ jobs:
 #          file: ./Dockerfile
 #          push: true
 #          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_SIMPLEAPI_REPO_NAME }}:latest
-#      - name: Deploy
-#        uses: bervProject/railway-deploy@main
-#        with:
-#          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-#          service: "proper-yarn"
+      - name: Deploy
+        uses: bervProject/railway-deploy@main
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          service: "proper-yarn"
