@@ -25,7 +25,7 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-slim
 COPY --from=build /home/app/target/simpleapi-1.0.jar /usr/local/lib/simpleapi-1.0.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/lib/simpleapi-1.0.jar"]
