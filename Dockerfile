@@ -15,5 +15,4 @@ ARG OPTIONS="-XX:InitialRAMPercentage=50 -XX:MaxRAMPercentage=80"
 ENV OPT=$OPTIONS
 COPY --from=build /home/app/target/simpleapi-1.0.jar /usr/local/lib/simpleapi-1.0.jar
 EXPOSE 8080
-CMD java ${OPT} -jar simpleapi-1.0.jar
-#ENTRYPOINT ["java","-jar","/usr/local/lib/simpleapi-1.0.jar"]
+ENTRYPOINT java ${OPT} -jar /usr/local/lib/simpleapi-1.0.jar
