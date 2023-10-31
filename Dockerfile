@@ -11,7 +11,7 @@ RUN mvn -f /home/app/pom.xml clean package
 
 
 FROM openjdk:8-jre-slim
-ARG OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xmx256m -Xss512k -XX:MetaspaceSize=100m -jar /apps/app.jar"
+ARG OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xmx256m -Xss512k -XX:MetaspaceSize=100m"
 ENV OPT=$OPTIONS
 COPY --from=build /home/app/target/simpleapi-1.0.jar /usr/local/lib/simpleapi-1.0.jar
 EXPOSE 8080
