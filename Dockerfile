@@ -15,4 +15,4 @@ ARG OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -
 ENV OPT=$OPTIONS
 COPY --from=build /home/app/target/simpleapi-1.0.jar /usr/local/lib/simpleapi-1.0.jar
 EXPOSE 8080
-ENTRYPOINT ["java ${OPT}", "-jar","/usr/local/lib/simpleapi-1.0.jar"]
+ENTRYPOINT java ${OPT}, -jar,/usr/local/lib/simpleapi-1.0.jar
