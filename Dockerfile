@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ARG JAR_FILE=target/simpleapi-1.0.jar
+ARG JAR_FILE=simpleapi-*.jar
 
 RUN mkdir -p /apps
 COPY ./target/${JAR_FILE} /apps/app.jar
