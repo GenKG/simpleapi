@@ -49,7 +49,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_SIMPLEAPI_REPO_NAME }}:latest
   deploy:
-    needs: build
+    needs: board-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
