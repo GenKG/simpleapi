@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "boardGame"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    command: [ "postgres", "-c", "log_statement=mod" ]
+    ports:
+      - "5432:5432"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+    networks:
+      - intranet
+  board-api:
+    image: egorsf/main-repo:latest
+    container_name: main-repo
+    restart: always
+    ports:
+      - "80:8080"
+    depends_on:
+      - "postgres"
+    networks:
+      - intranet
+    environment:
+      BOARD_API_DB_USERNAME: postgres
+      BOARD_API_DB_PASSWORD: root
+      BOARD_API_DB_HOST: localhost
+      BOARD_API_DB_PORT: 5432
+      BOARD_API_DB_NAME: boardGame
