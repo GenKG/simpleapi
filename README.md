@@ -50,5 +50,5 @@
 Целью лабораторной работы является знакомство с CI/CD и его реализацией на примере Travis CI и Heroku.
 <h5>Ссылка на развернутое приложение на платформе Heroku</h5>
 
-[ссылка на развернутое приложение](https://boardgamesdb.herokuapp.com/api/v1/status)
+[ссылка на развернутое приложение](http://ec2-16-171-110-253.eu-north-1.compute.amazonaws.com/api/v1/boardGames)
 
