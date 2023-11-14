@@ -1,5 +1,6 @@
 package ru.myproject.simpleapi.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,9 @@ public class StatusController {
     public static final String REST_URL = "/api/v1/status";
 
     @GetMapping
+    @Operation(summary = "Check status api")
     public Status get() throws UnknownHostException{
         log.info("get status");
-        return new Status(InetAddress.getLocalHost().getHostName(),"Первая апишка");
+        return new Status(InetAddress.getLocalHost().getHostName(),"Hello ! API is working");
     }
 }

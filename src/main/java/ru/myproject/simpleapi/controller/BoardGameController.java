@@ -26,28 +26,28 @@ public class BoardGameController {
     }
 
     @GetMapping(value = "/{id}")
-    @Operation(summary = "get board game by id")
+    @Operation(summary = "Get board game by id")
     public BoardGame get(@PathVariable("id") Long id) {
         log.info("get" + id);
         return boardGameService.get(id);
     }
 
     @GetMapping
-    @Operation(summary = "all get boards games in database")
+    @Operation(summary = "All get boards games in database")
     public List<BoardGame> getAll() {
         log.info("getAll");
         return boardGameService.getAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "save board game")
+    @Operation(summary = "Save board game")
     public BoardGame save(@RequestBody BoardGame boardGame) {
         log.info("save" + boardGame);
         return boardGameService.save(boardGame);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "delete board game by id")
+    @Operation(summary = "Delete board game by id")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         log.info("delete" + id);

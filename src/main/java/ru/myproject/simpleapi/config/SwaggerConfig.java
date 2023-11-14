@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@OpenAPIDefinition(servers = {@Server(url = "api/v1/boardGames/", description = "Manage boards games")})
+@OpenAPIDefinition(servers = {@Server(url = "/", description = "Manage boards games")})
 public class SwaggerConfig {
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("board")
-                .pathsToMatch("/api/v1/boardGames/**")
+                .pathsToMatch("/api/v1/**")
                 .build();
     }
 
