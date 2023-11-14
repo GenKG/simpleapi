@@ -1,5 +1,6 @@
 package ru.myproject.simpleapi.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +11,6 @@ import ru.myproject.simpleapi.model.BoardGame;
 import ru.myproject.simpleapi.service.BoardGameService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -26,24 +26,28 @@ public class BoardGameController {
     }
 
     @GetMapping(value = "/{id}")
+    @Operation(summary = "get board game by id")
     public BoardGame get(@PathVariable("id") Long id) {
         log.info("get" + id);
         return boardGameService.get(id);
     }
 
     @GetMapping
+    @Operation(summary = "all get boards games in database")
     public List<BoardGame> getAll() {
         log.info("getAll");
         return boardGameService.getAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "save board game")
     public BoardGame save(@RequestBody BoardGame boardGame) {
         log.info("save" + boardGame);
         return boardGameService.save(boardGame);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "delete board game by id")
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         log.info("delete" + id);
@@ -54,6 +58,7 @@ public class BoardGameController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Update all info by board game")
     public ResponseEntity<BoardGame> update(@PathVariable("id") Long id, @RequestBody BoardGame boardGame) {
         log.info("update board game with id: " + id);
         BoardGame updateBoardGame = boardGameService.update(id, boardGame);
@@ -63,6 +68,7 @@ public class BoardGameController {
     }
 
     @PatchMapping("/{id}")
+    @Operation(summary = "Update part of info by board game")
     public ResponseEntity<BoardGame> modified(@PathVariable("id") Long id, @RequestBody BoardGame boardGame) {
         log.info("modified board game with id: " + id);
         BoardGame modifiedBoardGame = boardGameService.modified(id, boardGame);
