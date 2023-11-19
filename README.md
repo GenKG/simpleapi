@@ -33,18 +33,40 @@ Tech-stack:
 ---
 <h4>Api commands</h4>
 Is the simplest CRUD api for managing your board games with uses JSON format.
-JSON example `{name:"String",publisher:"String, price:integer,quantity: "integer"}`
 
-`curl -X GET http://localhost:8080/api/v1/boardGames` - get all board games
+JSON example:
 
-`curl -X GET http://localhost:8080/api/v1/boardGames/{id}` - get board game by id
+```JSON
+{
+"name":"Arkham Horror",
+"publisher":"Fantasy Flight Games",
+"price":300,
+"quantity":2
+}
+```
+Get all board games  
+```
+curl -X GET http://localhost:8080/api/v1/boardGames
+``` 
+Get board game by id
+```
+curl -X GET http://localhost:8080/api/v1/boardGames/{id}
+``` 
+Create new record in database about board game
 
-`curl -X POST http://127.0.0.1:8080/api/v1/ -d {«name»: «Мафия″, "publisher": "Мосигра", "price": 7000, "quantity": 3} -H «Content-Type:application/json» `-
-create new record in database about board game
+```
+curl -X POST http://127.0.0.1:8080/api/v1/ -d {«name»: "Mafia", "publisher": "Mosigra", "price": 7000, "quantity": 3} -H «Content-Type:application/json»
+```
+Delete board game by id
 
-`curl -X POST http://localhost:8080/api/v1/boardGames/{id}` - delete board game by id
+```
+curl -X POST http://localhost:8080/api/v1/boardGames/{id}
+```  
 
-`curl -X GET http://localhost:8080/api/v1/status` - check status api
+Check status api
+```
+curl -X GET http://localhost:8080/api/v1/status
+```  
 
 Api uses full CI/CD conveyor with ``Github actions``  and  ``AWS EC-2``.  
 App build and push repo on ``Dockerhub`` after app is deployed on AWS instance in docker container and connect to AWS
