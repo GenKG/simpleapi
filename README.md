@@ -46,9 +46,10 @@ create new record in database about board game
 
 `curl -X GET http://localhost:8080/api/v1/status` - check status api
 
-Api uses full CI/CD conveyor with ``Github actions``  and  ``AWS Ec-2``.  
+Api uses full CI/CD conveyor with ``Github actions``  and  ``AWS EC-2``.  
 App build and push repo on ``Dockerhub`` after app is deployed on AWS instance in docker container and connect to AWS
-Erc Postgres database.   
+Erc Postgres database.  
+
 ---
 You can see the example app with this link on swagger:  
 [Swagger link.](http://ec2-16-171-110-253.eu-north-1.compute.amazonaws.com/swagger-ui/index.html#/)
