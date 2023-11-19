@@ -1,54 +1,55 @@
 [![build-deploy-app](https://github.com/GenKG/simpleapi/actions/workflows/build-deplout-app.yml/badge.svg)](https://github.com/GenKG/simpleapi/actions/workflows/build-deplout-app.yml)
-<h1>Методология разработки ПО</h1>
+<h1>Simple CRUD Api</h1>
 
-<h2>Лабораторная работа №1: создание микросервиса на Spring Boot с базой данных</h2>
+<h4>Simple CRUD(create,read,update,delete) API with board games domain area</h4>
 
-<h4>Сафонов Егор Игоревич, Группа 3mac2001</h4>
+Tech-stack:  
+- Java v.11
+- Maven
+- Postgres for database
+- Spring boot v.2.3
+- Spring data
+- Docker
+- Github-actions(CI process)
+- AWS EC-2 for deploy(CD process)
 
-<h3>Цель лабороторной работы</h3>
- 
- Знакомство с проектированием многослойной архитектурой и  создание 
- простого Rest Api приложения, используя технологии Java и Spring boot. 
- Для сборки потребуется 
- * Запущенная и развернутая база данных
- * Среда разработки(IDE)
- * Установленный GIT
- * Установленный docker
- 
- <h4>Инструкция по сборке и запуску:</h4>
- 
- 1.Склонировать репозиторий, используя команду `git clone https://github.com/GenKG/simpleapi` или скопировав ссылку с github. 
- 
- 2.Использовать комманду `mvn package -Dmaven.test.skip=true` (без покрытия тестов) в корневой директории для сборки проекта.
- 
- 3.Собрать docker образ, используя команду `docker build . -t myfirstapi:1.0` из текущей директории проекта
-     
- **где**
-  * **.** - (точка) являтся текущей директорией проекта 
-  * myfirstapi - название образа (можно указать любое)
-  * 1.0 - версия проекта(можно указать любую)
-  
- 4.Для запуска контейнера использовать `docker run -p 8080:8080 myfirstapi:1.0`
- 
- 
- <h4>Команады к проекту</h4>
- Приложение является простейшим отражением базы настольных игр с использованием JSON.
- Формат JSON `{name:"String",publisher:"String, price:integer,quantity: "integer"}`
- 
- `curl -X GET http://localhost:800/api/v1/boardGames` - получение всех данных из базы
-    
- `curl -X GET http://localhost:800/api/v1/boardGames/{id}` - получение информации из базы по id 
- 
- `curl -X POST http://127.0.0.1:800/api/v1/ -d {«name»: «Мафия″, "publisher": "Мосигра", "price": 7000, "quantity": 3} -H «Content-Type:application/json» `- добавление новой записи в базу
- 
- `curl -X POST http://localhost:800/api/v1/boardGames/{id}` -удаление по id
- 
- `curl -X GET http://localhost:800/api/v1/status` - возвращает hostname
+---
+<h4>Instruction for build and run app:</h4>
 
-<h2>Лабораторная работа №3: CI/CD и деплой приложения в Heroku</h2> 
-<h3>Цель лабороторной работы</h3>
-Целью лабораторной работы является знакомство с CI/CD и его реализацией на примере Travis CI и Heroku.
-<h5>Ссылка на развернутое приложение на платформе Heroku</h5>
+1. Clone the repository `git clone https://github.com/GenKG/simpleapi`
 
-[ссылка на развернутое приложение](http://ec2-16-171-110-253.eu-north-1.compute.amazonaws.com/api/v1/boardGames)
+2. Use command `mvn package -Dmaven.test.skip=true` (without tests) in root project directory for building.
+
+3. Build docker images, uses the command `docker build . -t board-games:1.0` from current project directory
+
+**where**
+
+* **.** - (dot) your current project directory
+* board-games - images name (you can specify any)
+* 1.0 - project version(you can specify any)
+
+4.For run container: `docker run -p 8080:8080 board-games:1.0`  
+
+---
+<h4>Api commands</h4>
+Is the simplest CRUD api for managing your board games with uses JSON format.
+JSON example `{name:"String",publisher:"String, price:integer,quantity: "integer"}`
+
+`curl -X GET http://localhost:8080/api/v1/boardGames` - get all board games
+
+`curl -X GET http://localhost:8080/api/v1/boardGames/{id}` - get board game by id
+
+`curl -X POST http://127.0.0.1:8080/api/v1/ -d {«name»: «Мафия″, "publisher": "Мосигра", "price": 7000, "quantity": 3} -H «Content-Type:application/json» `-
+create new record in database about board game
+
+`curl -X POST http://localhost:8080/api/v1/boardGames/{id}` - delete board game by id
+
+`curl -X GET http://localhost:8080/api/v1/status` - check status api
+
+Api uses full CI/CD conveyor with ``Github actions``  and  ``AWS Ec-2``.  
+App build and push repo on ``Dockerhub`` after app is deployed on AWS instance in docker container and connect to AWS
+Erc Postgres database.   
+---
+You can see the example app with this link on swagger:  
+[Swagger link.](http://ec2-16-171-110-253.eu-north-1.compute.amazonaws.com/swagger-ui/index.html#/)
 
