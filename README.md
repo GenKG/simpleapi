@@ -38,10 +38,10 @@ JSON example:
 
 ```JSON
 {
-"name":"Arkham Horror",
-"publisher":"Fantasy Flight Games",
-"price":300,
-"quantity":2
+  "name":"Arkham Horror",
+  "publisher":"Fantasy Flight Games",
+  "price":300,
+  "quantity":2
 }
 ```
 Get all board games  
